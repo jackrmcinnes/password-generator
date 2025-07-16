@@ -6,6 +6,7 @@ This is a simple Python script that generates a random password based on user in
 
 - Generates a random password of customizable length
 - Includes a variety of characters to make passwords strong
+- Choice of using special charcaters, numbers and punctuation
 
 ## Usage
 

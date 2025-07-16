@@ -1,23 +1,17 @@
-# password_generator.py
 import random
 import string
 
-def generate_password(length=12, include_special_chars=True):
-    """Generates a random password of specified length.
-    
-    Args:
-    length (int): The length of the password to be generated (default is 12).
-    include_special_chars (bool): Whether to include special characters in the password (default is True).
-    
-    Returns:
-    str: The generated password.
-    """
-    characters = string.ascii_letters + string.digits
-    
-    # Include special characters only if the user chose to
-    if include_special_chars:
-        characters += string.punctuation
-    
+def generate_password(length=12, char_type="all"):
+    """Generates a random password of specified length and type."""
+    if char_type == "letters":
+        characters = string.ascii_letters
+    elif char_type == "digits":
+        characters = string.digits
+    elif char_type == "punctuation":
+        characters = string.punctuation
+    else:
+        characters = string.ascii_letters + string.digits + string.punctuation  # All types
+
     password = ''.join(random.choice(characters) for _ in range(length))
     return password
 
@@ -25,13 +19,7 @@ def generate_password(length=12, include_special_chars=True):
 if __name__ == "__main__":
     try:
         password_length = int(input("Enter password length: "))
-        
-        # Ask user if they want special characters
-        user_input = input("Include special characters? (y/n): ").lower()
-        include_special_chars = True if user_input == 'y' else False
-        
-        # Generate and display the password
-        print("Generated Password:", generate_password(password_length, include_special_chars))
-        
+        char_type = input("Enter character type (letters/digits/punctuation/all): ").lower()
+        print("Generated Password:", generate_password(password_length, char_type))
     except ValueError:
         print("Please enter a valid number.")
